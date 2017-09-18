@@ -1,0 +1,6 @@
+repositório para as listas em sala
+
+aula_2: Person & Project
+aula_3: Dec2Roman
+aula_4: SIAPJ
+aula_5: sistemas de notas fiscais 
