@@ -1,0 +1,1 @@
+O exercício referente à aula 10 foi feito conjuntamente com Hudson Veira e postado no github dele, que pode ser acessado pelo link: https://github.com/HudsonWV/ces28_2017_hudson-vieira/tree/master/Listas_Sala/exercicios_aula_13
