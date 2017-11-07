@@ -5,6 +5,9 @@ import org.junit.Test;
 
 import DB.DB_NF;
 import DB.DB_PS;
+import Exceptions.DBInvalido;
+import Exceptions.IVNaoPresenteNoDB;
+import Exceptions.QuantidadeInvalida;
 import NotaFiscal.NotaFiscal;
 
 //Testes para o requisito 21:
@@ -22,13 +25,15 @@ public class Item_21 {
 	}
 		
 	@Test
-	public void imprimindo_NF_validada() {
+	public void imprimindo_NF_validada() 
+		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {
+
 		int id_1  = 100, qtd_1 = 3, 
 			id_2  = 200, qtd_2 = 5; 
 		
 		// COLOCAR OS CAMPOS DOS IMPOSTOS!
 		
-		NotaFiscal NF = NotaFiscal.create(id_1, qtd_1, this.DB_prod_serv);		
+		NotaFiscal NF = NotaFiscal.create(id_1, qtd_1, "", this.DB_prod_serv);		
 		NF.addIV(id_2, qtd_2);		
 				
 		NotaFiscal NF_validada = DB_nota_fiscal.validateNF(NF);

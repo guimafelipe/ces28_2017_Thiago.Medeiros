@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import NotaFiscal.NotaFiscal;
-import NotaFiscal.NotaFiscalImut;
+import NotaFiscal.NFImutavel;
 
 public class DB_NF {
 	private int id;
-	private Map<String, NotaFiscalImut> NFs;
+	private Map<String, NFImutavel> NFs;
 	
 	public DB_NF() {
 		this.id = 0;
-		this.NFs = new HashMap<String, NotaFiscalImut>();
+		this.NFs = new HashMap<String, NFImutavel>();
 	}
 	
 	private String newId() {
@@ -29,7 +29,7 @@ public class DB_NF {
 		}
 		
 		String newId = newId();
-		NotaFiscalImut newNF = new NotaFiscalImut(NF.getItems(), newId);
+		NFImutavel newNF = new NFImutavel(NF.getItems(), NF.getOutros(), newId);
 		
 		NFs.put(newId, newNF);
 		

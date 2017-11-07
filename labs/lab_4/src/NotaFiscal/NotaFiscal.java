@@ -5,39 +5,43 @@ import java.util.Map;
 import DB.DB_PS;
 import DB.IV;
 
+import Exceptions.DBInvalido;
+import Exceptions.IVNaoPresenteNoDB;
+import Exceptions.QuantidadeInvalida;
+
 public abstract class NotaFiscal {
-	public static NotaFiscal create(int id, int quantidade, DB_PS DB_prod_serv) {
-		return NotaFiscalMut.create(id, quantidade, DB_prod_serv);
+	// Construtor
+	protected NotaFiscal() { }
+	
+	// Factory Method
+	public static NotaFiscal create(int id, int quantidade, String outros, DB_PS DB_prod_serv)
+		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {
+		
+		return NFMutavel.create(id, quantidade, outros, DB_prod_serv);
 	}
 	
 	// Retorna a quantidade de elementos na NF
-	public int getNFSize() { return 0; }
-	
+	public abstract int getNFSize();
+		
 	// Retorna o IV
-	public IV getItem(int id) { return null; }
+	public abstract IV getItem(int id);
 	// Retorna todos os IVs
-	public Map<Integer, IV> getItems() { return null; }
-	// Retorna a quantidade do IV
-	public int getQuantidade(int id) { return 0; }
-	// Retorna o desconto associado ao IV
-	public double getDesconto(int id) { return 0.0; }
-	// Retorna o preco do IV
-	public double getPreco(int id) { return 0.0; }
-	// Retorna o nome do IV
-	public String getNome(int id) { return ""; }
-	// Retorna os dados salvos no atributo Outros do IV
-	public String getOutros(int id) { return ""; }
+	public abstract Map<Integer, IV> getItems();
 	
 	// Retorna a ID da NF, caso validada
 	public String getId() { return ""; }
 	// Retorna o Estado da NF ("em elaboração" ou "validada")
-	public String getEstado() { return ""; }
+	public abstract String getEstado();
+	// Retorna uma String para o campo "outros"
+	public abstract String getOutros();
+	// Modifica o campo "outros"
+	public void setOutros(String oturos) { };
 
 	// Retorna uma String com as informações atuais da NF 
-	public String checkNotaFiscal() { return ""; }
+	public abstract String checkNotaFiscal();
 
 	// Retorna true se o IV está presente na NF 
-	public boolean isInNF(int id) { return false; }
+	public abstract boolean isInNF(int id);
 
 	// Os métodos abaixo retornam true se a operação for bem sucedida
 	

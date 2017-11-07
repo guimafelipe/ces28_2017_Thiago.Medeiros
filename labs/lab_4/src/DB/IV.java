@@ -7,11 +7,11 @@ public abstract class IV {
 	private double desconto; // nao dos PS
 	//private HashMap<Integer, Integer> sub_PS; // (id, quantidade) dos subprod/subserv
 	
-	protected IV() { }
-	
-	public String getName()  { return ""; }
-	public double getPreco() { return 0.0; }
-	
+	protected IV() {
+		this.quantidade = 0;
+		this.desconto = 0.0;
+	}
+		
 	public void setQuantidade(int quant) {
 		if(quant > 0) {	this.quantidade = quant; }
 	}
@@ -23,5 +23,8 @@ public abstract class IV {
 	}
 	
 	public double getDesconto() { return this.desconto; }
-	public String getOutros()   { return ""; }
+
+	public abstract String getName();
+	public abstract double getPreco();
+	public abstract String getOutros();
 }
