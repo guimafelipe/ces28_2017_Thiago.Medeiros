@@ -4,28 +4,39 @@ import java.util.Map;
 
 import DB.DB_PS;
 import DB.IV;
-
 import Exceptions.DBInvalido;
 import Exceptions.IVNaoPresenteNoDB;
+import Exceptions.NFInvalida;
 import Exceptions.QuantidadeInvalida;
 
 public abstract class NotaFiscal {
 	// Construtor
 	protected NotaFiscal() { }
 	
-	// Factory Method
+	// Factory Method para NFMutavel
 	public static NotaFiscal create(int id, int quantidade, String outros, DB_PS DB_prod_serv)
 		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {
+
+		if  (DB_prod_serv == null)   { throw new DBInvalido("DB_PS invalido!\n"); }
+		if(!DB_prod_serv.isInDB(id)) { throw new IVNaoPresenteNoDB("IV nao existe no DB!\n"); }
+		if    (quantidade <= 0)      { throw new QuantidadeInvalida("Quantidade invalida para IV!\n"); }
 		
-		return NFMutavel.create(id, quantidade, outros, DB_prod_serv);
+		return new NFMutavel(id, quantidade, outros, DB_prod_serv);
+	}
+
+	// Factory Method para NFImutavel
+	public static NotaFiscal create(Map<Integer, IV> items, String outros, String Id) 
+		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido, NFInvalida {
+		
+		return new NFImutavel(items, outros, Id);
 	}
 	
 	// Retorna a quantidade de elementos na NF
 	public abstract int getNFSize();
 		
-	// Retorna o IV
+	// Retorna uma copia do IV
 	public abstract IV getItem(int id);
-	// Retorna todos os IVs
+	// Retorna uma copia da lista dos IVs
 	public abstract Map<Integer, IV> getItems();
 	
 	// Retorna a ID da NF, caso validada

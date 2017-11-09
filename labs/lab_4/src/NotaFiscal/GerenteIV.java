@@ -6,7 +6,7 @@ import java.util.Map;
 import DB.DB_PS;
 import DB.IV;
 
-public class GerenteIV {	
+public class GerenteIV { // Isso eh Façade?
 	private DB_PS DB_ps;
 	private Map<Integer, IV> items;
 

@@ -15,25 +15,16 @@ public class NFMutavel extends NotaFiscal {
 	private GerenteIV gerente;
 	
 	// Construtor
-	private NFMutavel(int id, int quantidade, String outros, DB_PS DB_prod_serv) {
+	NFMutavel(int id, int quantidade, String outros, DB_PS DB_prod_serv)
+			  throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {
+								
 		this.valor   = 0.0;
 		this.outros  = outros;
 		this.gerente = new GerenteIV(DB_prod_serv); 
 	
 		this.gerente.addIV(id, quantidade);
 	}
-
-	// Factory Method
-	public static NFMutavel create(int id, int quantidade, String outros, DB_PS DB_prod_serv)
-		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {
-
-		if  (DB_prod_serv == null)   { throw new DBInvalido("DB_PS invalido!\n"); }
-		if(!DB_prod_serv.isInDB(id)) { throw new IVNaoPresenteNoDB("IV nao existe no DB!\n"); }
-		if    (quantidade <= 0)      { throw new QuantidadeInvalida("Quantidade invalida para IV!\n"); }
-				
-		return new NFMutavel(id, quantidade, outros, DB_prod_serv);
-	}
-	
+		
 	// Retorna o estado da nota
 	public String getEstado() { return "em elaboração"; }
 	
@@ -112,5 +103,9 @@ public class NFMutavel extends NotaFiscal {
 		return this.gerente.removeIV(id);
 	}	
 
-	public boolean isInNF(int id) { return this.gerente.isInNF(id); }	
+	public boolean isInNF(int id) { return this.gerente.isInNF(id); }
+	
+	protected static String formatString(int spaces, String str) {
+		return String.format("%-" + Integer.toString(spaces) + "s", str);
+	}
 }

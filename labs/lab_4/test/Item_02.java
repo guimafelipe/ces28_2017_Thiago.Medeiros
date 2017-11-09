@@ -18,7 +18,7 @@ public class Item_02 {
 	
 	@Before
 	public void setUp() {
-		this.DB_prod_serv = new DB_PS(); // Devem ser substituido por mock !!!
+		this.DB_prod_serv = DB_PS.getInstance(); // Devem ser substituido por mock !!!
 	}
 
 	@Test (expected = AssertionError.class)

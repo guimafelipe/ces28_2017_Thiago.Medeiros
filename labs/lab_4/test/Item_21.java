@@ -7,6 +7,7 @@ import DB.DB_NF;
 import DB.DB_PS;
 import Exceptions.DBInvalido;
 import Exceptions.IVNaoPresenteNoDB;
+import Exceptions.NFInvalida;
 import Exceptions.QuantidadeInvalida;
 import NotaFiscal.NotaFiscal;
 
@@ -20,13 +21,13 @@ public class Item_21 {
 	
 	@Before
 	public void setUp() {
-		this.DB_prod_serv = new DB_PS(); // Devem ser substituido por mock !!!
-		this.DB_nota_fiscal = new DB_NF();
+		this.DB_prod_serv = DB_PS.getInstance(); // Devem ser substituido por mock !!!
+		this.DB_nota_fiscal = DB_NF.getInstance();
 	}
 		
 	@Test
 	public void imprimindo_NF_validada() 
-		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {
+		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido, NFInvalida {
 
 		int id_1  = 100, qtd_1 = 3, 
 			id_2  = 200, qtd_2 = 5; 

@@ -1,4 +1,6 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +20,7 @@ public class Item_01 {
 	
 	@Before
 	public void setUp() {
-		this.DB_prod_serv = new DB_PS(); // Devem ser substituido por mock !!!
+		this.DB_prod_serv = DB_PS.getInstance(); // Devem ser substituido por mock !!!
 	}
 	
 	@Test
@@ -51,7 +53,7 @@ public class Item_01 {
 			qtd_exemplo = 0;   // resulta em uma exceção
 		
 		try {
-			NotaFiscal.create(id_exemplo, qtd_exemplo, "", this.DB_prod_serv);
+			NFMutavel.create(id_exemplo, qtd_exemplo, "", this.DB_prod_serv);
 			fail();
 		}
 		catch (QuantidadeInvalida expect) {
@@ -67,7 +69,7 @@ public class Item_01 {
 			qtd_exemplo = 1;      // resulta em uma exceção
 
 		try {
-			NotaFiscal.create(id_exemplo, qtd_exemplo, "", this.DB_prod_serv);
+			NFMutavel.create(id_exemplo, qtd_exemplo, "", this.DB_prod_serv);
 			fail();
 		}
 		catch (IVNaoPresenteNoDB expect) {
@@ -101,7 +103,7 @@ public class Item_01 {
 		// A passagem de um DB invalido gera exceção
 
 		try {
-			NotaFiscal.create(id_exemplo, qtd_exemplo, "", null);
+			NFMutavel.create(id_exemplo, qtd_exemplo, "", null);
 			fail();
 		}
 		catch (DBInvalido expect) {
@@ -120,20 +122,5 @@ public class Item_01 {
 		// visibilidade restrita à própria classe
 
 		//NotaFiscalMut NF = new NotaFiscalMut(id_exemplo, qtd_exemplo, this.DB_prod_serv);			
-	}
-
-	@Test
-	public void Outra_forma_de_instanciar_corretamente ()
-		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {
-
-		int id_exemplo  = 100,
-			qtd_exemplo = 1; 
-
-		NFMutavel NF = NFMutavel.create(id_exemplo, qtd_exemplo, "", this.DB_prod_serv);
-		// Uma vez que as verificações de validade de "id" e do "DB" são feitas na Classe
-		// "NotaFiscalMut", acessar o Factory Method "create" de "NotaFiscalMut" é equivalente
-		// à chamar o método estático "create" da Classe "NotaFiscal".
-		
-		assertTrue(NF != null);
 	}
 }

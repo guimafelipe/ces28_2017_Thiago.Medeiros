@@ -1,6 +1,16 @@
 package DB;
 
 public class DB_PS {
+	static private DB_PS instance = null;
+	
+	private DB_PS() { }
+	
+	// Singleton
+	public static DB_PS getInstance() {
+		if(instance == null) { return new DB_PS(); }
+		return instance;
+	}
+	
 	public void addItem(IV newItem) {
 		//
 	}

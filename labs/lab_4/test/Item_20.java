@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ public class Item_20 {
 	
 	@Before
 	public void setUp() {
-		this.DB_prod_serv = new DB_PS(); // Devem ser substituido por mock !!!
+		this.DB_prod_serv = DB_PS.getInstance(); // Devem ser substituido por mock !!!
 	}
 	@Test
 	public void exemplificacao_da_possibilidade_de_extensao_do_campo_outros()
@@ -32,8 +33,8 @@ public class Item_20 {
 
 		assertEquals(NF.getOutros(), "exemplo");
 		
-		// Por exemplo, o campo "outros" poderia se referir ao ID do cliente a ser associado
-		// à NF em sua criação
+		// Por exemplo, o campo "outros" ser substituido por uma classe "dataCliente" com diversos
+		// dados sobre o cliente associado à NF
 		
 		NF.setOutros("id_321");
 		assertEquals(NF.getOutros(), "id_321");

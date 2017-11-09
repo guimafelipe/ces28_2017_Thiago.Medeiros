@@ -2,7 +2,9 @@ package NotaFiscal;
 
 import java.util.Map;
 
+import DB.DB_NF;
 import DB.IV;
+import Exceptions.NFInvalida;
 
 final public class NFImutavel extends NotaFiscal {
 	final private String id, outros, NF, NFItems;
@@ -10,7 +12,14 @@ final public class NFImutavel extends NotaFiscal {
 	final private double valor;
 	
 	// Construtor
-	public NFImutavel(Map<Integer, IV> items, String outros, String Id) {
+	NFImutavel(Map<Integer, IV> items, String outros, String Id)
+    throws NFInvalida {
+		DB_NF DB_nota_fiscal = DB_NF.getInstance();
+				
+		if(!DB_nota_fiscal.checkId(Id) || DB_nota_fiscal.getNF(Id) != null) {
+			throw new NFInvalida("Nota Fiscal Invalida!\n");
+		}
+		
 		this.id = Id;
 		this.valor  = 0.0; // calcular
 		this.outros = outros;
