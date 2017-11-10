@@ -4,7 +4,6 @@ import java.util.Map;
 
 import DB.DB_PS;
 import DB.IV;
-import Exceptions.DBInvalido;
 import Exceptions.IVNaoPresenteNoDB;
 import Exceptions.NFInvalida;
 import Exceptions.QuantidadeInvalida;
@@ -14,20 +13,20 @@ public abstract class NotaFiscal {
 	protected NotaFiscal() { }
 	
 	// Factory Method para NFMutavel
-	public static NotaFiscal create(int id, int quantidade, String outros, DB_PS DB_prod_serv)
-		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {
+	public static NotaFiscal create(int id, int quantidade, String outros)
+		   throws QuantidadeInvalida, IVNaoPresenteNoDB {
 
-		if  (DB_prod_serv == null)   { throw new DBInvalido("DB_PS invalido!\n"); }
-		if(!DB_prod_serv.isInDB(id)) { throw new IVNaoPresenteNoDB("IV nao existe no DB!\n"); }
-		if    (quantidade <= 0)      { throw new QuantidadeInvalida("Quantidade invalida para IV!\n"); }
+		if(quantidade <= 0) { throw new QuantidadeInvalida("Quantidade invalida para IV!\n"); }
 		
-		return new NFMutavel(id, quantidade, outros, DB_prod_serv);
+		DB_PS DB_ps = DB_PS.getInstance();
+		if(!DB_ps.isInDB(id)) { throw new IVNaoPresenteNoDB("IV nao existe no DB!\n"); }
+		
+		return new NFMutavel(id, quantidade, outros);
 	}
 
 	// Factory Method para NFImutavel
 	public static NotaFiscal create(Map<Integer, IV> items, String outros, String Id) 
-		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido, NFInvalida {
-		
+		   throws QuantidadeInvalida, IVNaoPresenteNoDB, NFInvalida {		
 		return new NFImutavel(items, outros, Id);
 	}
 	
@@ -46,7 +45,7 @@ public abstract class NotaFiscal {
 	// Retorna uma String para o campo "outros"
 	public abstract String getOutros();
 	// Modifica o campo "outros"
-	public void setOutros(String oturos) { };
+	public void setOutros(String outros) { };
 
 	// Retorna uma String com as informações atuais da NF 
 	public abstract String checkNotaFiscal();

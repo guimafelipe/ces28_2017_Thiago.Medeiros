@@ -3,7 +3,6 @@ package DB;
 import java.util.HashMap;
 import java.util.Map;
 
-import Exceptions.DBInvalido;
 import Exceptions.IVNaoPresenteNoDB;
 import Exceptions.NFInvalida;
 import Exceptions.QuantidadeInvalida;
@@ -48,7 +47,7 @@ public class DB_NF {
 	}
 
 	public NotaFiscal validateNF(NotaFiscal NF)
-		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido, NFInvalida {
+		   throws QuantidadeInvalida, IVNaoPresenteNoDB, NFInvalida {
 	
 		if(!checkConsistencia(NF)) { return null; }
 		

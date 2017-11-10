@@ -4,52 +4,49 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import DB.DB_PS;
 import DB.IV;
-import Exceptions.DBInvalido;
 import Exceptions.IVNaoPresenteNoDB;
 import Exceptions.QuantidadeInvalida;
 import NotaFiscal.NotaFiscal;
 
 public class Item_13 {
-private DB_PS DB_prod_serv;
 	@Before
 	public void setUp() {
-		this.DB_prod_serv = DB_PS.getInstance(); // Devem ser substituido por mock !!!
+		// mocks
 	}
 	
 	@Test
 	public void modificando_adicionando_e_deletando_IVs()
-		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {		
+		   throws QuantidadeInvalida, IVNaoPresenteNoDB {		
 		
-		NotaFiscal NF = NotaFiscal.create(100, 3, "", this.DB_prod_serv);
+		NotaFiscal NF = NotaFiscal.create(100, 3, ""); // cria NF com item id=100
 		
-		IV PS_1 = NF.getItem(100);
-		assertEquals(PS_1.getQuantidade(), 3);
+		IV PS_1 = NF.getItem(100);                     // verifica que o item foi 
+		assertEquals(PS_1.getQuantidade(), 3);         // adicionado à nota
+											   // - - - - - - - - - - - -
+		NF.setQuantidade(100, 4);              // muda a quantidade do item id=100 de 3 para 4
+
+		IV PS_2 = NF.getItem(100);             // verifica que a mudança
+		assertEquals(PS_2.getQuantidade(), 4); // foi efetivada
+		                                       // - - - - - - - - - - - -
+		NF.mudaQuantidade(100, 2);             // muda a quantidade do item id=100 de 4 para 2
+
+		IV PS_3 = NF.getItem(100);             // verifica que a mudança foi
+		assertEquals(PS_3.getQuantidade(), 6); // efetivada
+		                           // - - - - - - - - - - - -
+		NF.addIV(200, 3);          // adiciona item id=200
 		
-		NF.setQuantidade(100, 4);
+		IV PS_4 = NF.getItem(200); // verifica que o item foi
+		assertTrue(PS_4 != null);  // adicionado
+		                           // - - - - - - - - - - - -
+		NF.addIV(300, 1);          // adiciona item id=300
 
-		IV PS_2 = NF.getItem(100);
-		assertEquals(PS_2.getQuantidade(), 4);
+		IV PS_5 = NF.getItem(300); // verifica que o item foi 
+		assertTrue(PS_5 != null);  // adicionado
+		                           // - - - - - - - - - - - -
+		NF.removeIV(200);          // remove item id=200
 
-		NF.mudaQuantidade(100, 2);
-
-		IV PS_3 = NF.getItem(100);
-		assertEquals(PS_3.getQuantidade(), 6);
-
-		NF.addIV(200, 3);
-		
-		IV PS_4 = NF.getItem(200);
-		assertTrue(PS_4 != null);
-
-		NF.addIV(300, 1);
-
-		IV PS_5 = NF.getItem(300);
-		assertTrue(PS_5 != null);
-
-		NF.removeIV(200);
-
-		IV PS_6 = NF.getItem(200);
-		assertTrue(PS_6 == null);
+		IV PS_6 = NF.getItem(200); // verifica que o item
+		assertTrue(PS_6 == null);  // foi removido
 	}
 }

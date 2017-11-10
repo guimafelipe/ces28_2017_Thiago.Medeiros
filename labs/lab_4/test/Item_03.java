@@ -8,11 +8,9 @@ import org.junit.Test;
 //-> Todo PS deve pertencer a exatamente um IV.
 
 public class Item_03 {
-	//private DB_PS DB_prod_serv;
-	
 	@Before
 	public void setUp() {
-		//this.DB_prod_serv = new DB_PS(); // Devem ser substituido por mock !!!
+		// mocks
 	}
 		
 	@Test

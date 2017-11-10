@@ -12,7 +12,7 @@ final public class NFImutavel extends NotaFiscal {
 	final private double valor;
 	
 	// Construtor
-	NFImutavel(Map<Integer, IV> items, String outros, String Id)
+	protected NFImutavel(Map<Integer, IV> items, String outros, String Id)
     throws NFInvalida {
 		DB_NF DB_nota_fiscal = DB_NF.getInstance();
 				

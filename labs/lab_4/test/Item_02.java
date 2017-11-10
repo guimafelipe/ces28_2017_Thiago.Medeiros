@@ -3,9 +3,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import DB.DB_PS;
 import DB.IV;
-import Exceptions.DBInvalido;
 import Exceptions.IVNaoPresenteNoDB;
 import Exceptions.QuantidadeInvalida;
 import NotaFiscal.NotaFiscal;
@@ -13,26 +11,24 @@ import NotaFiscal.NotaFiscal;
 // Testes para o requisito 2:
 // -> Todo IV deve pertencer a exatamente uma NF.
 
-public class Item_02 {
-	private DB_PS DB_prod_serv;
-	
+public class Item_02 {	
 	@Before
 	public void setUp() {
-		this.DB_prod_serv = DB_PS.getInstance(); // Devem ser substituido por mock !!!
+		// mocks
 	}
 
 	@Test (expected = AssertionError.class)
 	public void verificacao_da_diferenca_entre_objetos_IV_de_NFs_diferentes() 
-		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {
+		   throws QuantidadeInvalida, IVNaoPresenteNoDB {
 
-		int id_exemplo_1 = 100,
-			qtd_exemplo_1 = 1;		
-		NotaFiscal NF1 = NotaFiscal.create(id_exemplo_1, qtd_exemplo_1, "", this.DB_prod_serv);
+		int id_1 = 100,
+			qtd_1 = 1;		
+		NotaFiscal NF1 = NotaFiscal.create(id_1, qtd_1, "");
 		IV item_1 = NF1.getItem(100);
 		
-		int id_exemplo_2 = 100,
-			qtd_exemplo_2 = 1;			
-		NotaFiscal NF2 = NotaFiscal.create(id_exemplo_2, qtd_exemplo_2, "", this.DB_prod_serv);
+		int id_2 = 100,
+			qtd_2 = 1;			
+		NotaFiscal NF2 = NotaFiscal.create(id_2, qtd_2, "");
 		IV item_2 = NF2.getItem(100);
 		
 		// Uma exceção será gerada (AssertionError), pois embora os objetos tenham sido
@@ -49,11 +45,11 @@ public class Item_02 {
 	
 	@Test (expected = AssertionError.class)
 	public void tentativa_de_modificar_os_IVs_na_NF() 
-		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {
+		   throws QuantidadeInvalida, IVNaoPresenteNoDB {
 
 		int id_exemplo = 100,
 			qtd_exemplo = 1;				
-		NotaFiscal NF = NotaFiscal.create(id_exemplo, qtd_exemplo, "", this.DB_prod_serv);
+		NotaFiscal NF = NotaFiscal.create(id_exemplo, qtd_exemplo, "");
 		
 		IV itemExterno = NF.getItem(100);
 		itemExterno.setQuantidade(10);

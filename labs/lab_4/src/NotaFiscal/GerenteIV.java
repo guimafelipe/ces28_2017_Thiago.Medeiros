@@ -7,20 +7,20 @@ import DB.DB_PS;
 import DB.IV;
 
 public class GerenteIV { // Isso eh Façade?
-	private DB_PS DB_ps;
 	private Map<Integer, IV> items;
 
 	// Construtor
-	protected GerenteIV(DB_PS DB_prod_serv) {
-		this.DB_ps = DB_prod_serv;
+	protected GerenteIV() {
 		this.items = new HashMap<Integer, IV>();
 	}
 	
 	// Retorna uma copia do item
 	public IV getItem(int id) {
 		if(isInNF(id)) {
+			DB_PS DB_ps = DB_PS.getInstance();
+			
 			IV trueIV = this.items.get(id);
-			IV copyIV = this.DB_ps.getItem(id);
+			IV copyIV = DB_ps.getItem(id);
 			
 			copyIV.setDesconto(trueIV.getDesconto());
 			copyIV.setQuantidade(trueIV.getQuantidade());
@@ -53,9 +53,12 @@ public class GerenteIV { // Isso eh Façade?
 		if(isInNF(id)) { return false; }			
 		
 		if(isInDB(id)) {			
+			DB_PS DB_ps = DB_PS.getInstance();
+
 			IV newPS = DB_ps.getItem(id);
-			newPS.setQuantidade(quantidade);
+			newPS.setQuantidade(quantidade);			
 			this.items.put(id, newPS);
+			
 			return true;
 		}
 		
@@ -108,6 +111,7 @@ public class GerenteIV { // Isso eh Façade?
 
 	// Verifica se item pertence ao BD
 	private boolean isInDB(int id) {
-		return this.DB_ps.isInDB(id);
+		DB_PS DB_ps = DB_PS.getInstance();
+		return DB_ps.isInDB(id);
 	}
 }

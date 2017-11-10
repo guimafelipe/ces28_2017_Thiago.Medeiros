@@ -3,27 +3,23 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import DB.DB_PS;
-import Exceptions.DBInvalido;
 import Exceptions.IVNaoPresenteNoDB;
 import Exceptions.QuantidadeInvalida;
 import NotaFiscal.NotaFiscal;
 
 public class Item_20 {
-	private DB_PS DB_prod_serv;
-	
 	@Before
 	public void setUp() {
-		this.DB_prod_serv = DB_PS.getInstance(); // Devem ser substituido por mock !!!
+		// mocks
 	}
 	@Test
 	public void exemplificacao_da_possibilidade_de_extensao_do_campo_outros()
-		   throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {		
+		   throws QuantidadeInvalida, IVNaoPresenteNoDB {		
 	
 		int id_exemplo = 100,
 			qtd_exemplo = 3;
 		
-		NotaFiscal NF = NotaFiscal.create(id_exemplo, qtd_exemplo, "exemplo", this.DB_prod_serv);
+		NotaFiscal NF = NotaFiscal.create(id_exemplo, qtd_exemplo, "exemplo");
 		
 		// O campo "outros" pode ser facilmente modificado, facilitando a extensao
 		// da classe NotaFiscal. Isso é possível de ser percebido com o uso do 

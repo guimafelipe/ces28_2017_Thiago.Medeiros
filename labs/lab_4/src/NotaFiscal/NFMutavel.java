@@ -2,9 +2,7 @@ package NotaFiscal;
 
 import java.util.Map;
 
-import DB.DB_PS;
 import DB.IV;
-import Exceptions.DBInvalido;
 import Exceptions.IVNaoPresenteNoDB;
 import Exceptions.QuantidadeInvalida;
 
@@ -15,12 +13,12 @@ public class NFMutavel extends NotaFiscal {
 	private GerenteIV gerente;
 	
 	// Construtor
-	NFMutavel(int id, int quantidade, String outros, DB_PS DB_prod_serv)
-			  throws QuantidadeInvalida, IVNaoPresenteNoDB, DBInvalido {
+	protected NFMutavel(int id, int quantidade, String outros)
+			  throws QuantidadeInvalida, IVNaoPresenteNoDB {
 								
 		this.valor   = 0.0;
 		this.outros  = outros;
-		this.gerente = new GerenteIV(DB_prod_serv); 
+		this.gerente = new GerenteIV(); 
 	
 		this.gerente.addIV(id, quantidade);
 	}
