@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import DB.API_DB_PS;
-import DB.DB_PS;
 import DB.IV;
+import Exceptions.IVNaoPresenteNoDB;
 
 public class GerenteIV { // Isso eh Façade?
 	private Map<Integer, IV> items;
@@ -50,7 +50,8 @@ public class GerenteIV { // Isso eh Façade?
 	}
 		
 	// Adiciona item à lista com a quantidade especificada
-	public boolean addIV(int id, int quantidade) {
+	public boolean addIV(int id, int quantidade) 
+		throws IVNaoPresenteNoDB {
 		if(isInNF(id)) { return false; }			
 		
 		if(isInDB(id)) {			
@@ -62,6 +63,8 @@ public class GerenteIV { // Isso eh Façade?
 			
 			return true;
 		}
+		
+		if (!isInDB(id)){ throw new IVNaoPresenteNoDB("IV nao existe no DB!\n"); }
 		
 		return false;
 	}

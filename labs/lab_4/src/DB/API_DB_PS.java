@@ -29,7 +29,17 @@ public class API_DB_PS {
 		return database_ps.getItem(id);
 	}
 	
-	public void setDB (DB_PS db) // metodo necessário para Mockar a DB, não existiria no programa real.
+	public Produto createProduto(String nome, double preco_hora, String outros)
+	{
+		return database_ps.createProduto(nome, preco_hora, outros);
+	}
+	
+	public Servico createServico(String nome , double preco_und, String outros)
+	{
+		return database_ps.createServico(nome, preco_und, outros);
+	}
+	
+	protected void setDB (DB_PS db) // metodo necessário para Mockar a DB, não existiria no programa real.
 	{
 		database_ps = db;
 	}

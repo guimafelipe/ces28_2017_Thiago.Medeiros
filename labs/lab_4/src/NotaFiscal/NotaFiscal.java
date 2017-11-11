@@ -61,7 +61,7 @@ public abstract class NotaFiscal {
 	// Seta a quantidade do IV
 	public boolean setQuantidade(int id, int quantidade) { return false; }
 	// Insere o IV na NF com a quantidade especificada
-	public boolean addIV(int id, int quantidade) { return false; }
+	public boolean addIV(int id, int quantidade) throws IVNaoPresenteNoDB { return false; }
 	// Remove o IV da NF, se possível
 	public boolean removeIV(int id) { return false; }
 	

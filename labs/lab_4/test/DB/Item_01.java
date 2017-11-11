@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import DB.API_DB_PS;
 import DB.DB_PS;
+import DB.Produto;
 import Exceptions.IVNaoPresenteNoDB;
 import Exceptions.QuantidadeInvalida;
 import NotaFiscal.NotaFiscal;

@@ -94,7 +94,7 @@ public class NFMutavel extends NotaFiscal {
 		return this.gerente.setQuantidade(id, quantidade);			
 	}
 
-	public boolean addIV(int id, int quantidade) { return this.gerente.addIV(id, quantidade); }
+	public boolean addIV(int id, int quantidade) throws IVNaoPresenteNoDB{ return this.gerente.addIV(id, quantidade); }
 
 	public boolean removeIV(int id) {
 		if(!getEstado().equals("em elaboração")) { return false; }
