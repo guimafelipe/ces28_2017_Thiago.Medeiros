@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Avell 1513/Documents/Matérias - ITA/1° COMP/Segundo Semestre/CES-28/ces28_2017_Thiago.Medeiros/labs/lab_4/libs/byte-buddy-1.6.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Avell 1513/Documents/Matérias - ITA/1° COMP/Segundo Semestre/CES-28/ces28_2017_Thiago.Medeiros/labs/lab_4/libs/byte-buddy-agent-1.6.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Avell 1513/Documents/Matérias - ITA/1° COMP/Segundo Semestre/CES-28/ces28_2017_Thiago.Medeiros/labs/lab_4/libs/javax.mail-1.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Avell 1513/Documents/Matérias - ITA/1° COMP/Segundo Semestre/CES-28/ces28_2017_Thiago.Medeiros/labs/lab_4/libs/mockito-core-2.8.47.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Avell 1513/Documents/Matérias - ITA/1° COMP/Segundo Semestre/CES-28/ces28_2017_Thiago.Medeiros/labs/lab_4/libs/objenesis-2.5.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

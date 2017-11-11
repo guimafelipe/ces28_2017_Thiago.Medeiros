@@ -3,6 +3,7 @@ package NotaFiscal;
 import java.util.HashMap;
 import java.util.Map;
 
+import DB.API_DB_PS;
 import DB.DB_PS;
 import DB.IV;
 
@@ -17,7 +18,7 @@ public class GerenteIV { // Isso eh Façade?
 	// Retorna uma copia do item
 	public IV getItem(int id) {
 		if(isInNF(id)) {
-			DB_PS DB_ps = DB_PS.getInstance();
+			API_DB_PS DB_ps = API_DB_PS.getInstance();
 			
 			IV trueIV = this.items.get(id);
 			IV copyIV = DB_ps.getItem(id);
@@ -53,7 +54,7 @@ public class GerenteIV { // Isso eh Façade?
 		if(isInNF(id)) { return false; }			
 		
 		if(isInDB(id)) {			
-			DB_PS DB_ps = DB_PS.getInstance();
+			API_DB_PS DB_ps = API_DB_PS.getInstance();
 
 			IV newPS = DB_ps.getItem(id);
 			newPS.setQuantidade(quantidade);			
@@ -111,7 +112,7 @@ public class GerenteIV { // Isso eh Façade?
 
 	// Verifica se item pertence ao BD
 	private boolean isInDB(int id) {
-		DB_PS DB_ps = DB_PS.getInstance();
+		API_DB_PS DB_ps = API_DB_PS.getInstance();
 		return DB_ps.isInDB(id);
 	}
 }

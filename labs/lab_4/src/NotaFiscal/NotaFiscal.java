@@ -2,6 +2,7 @@ package NotaFiscal;
 
 import java.util.Map;
 
+import DB.API_DB_PS;
 import DB.DB_PS;
 import DB.IV;
 import Exceptions.IVNaoPresenteNoDB;
@@ -18,8 +19,8 @@ public abstract class NotaFiscal {
 
 		if(quantidade <= 0) { throw new QuantidadeInvalida("Quantidade invalida para IV!\n"); }
 		
-		DB_PS DB_ps = DB_PS.getInstance();
-		if(!DB_ps.isInDB(id)) { throw new IVNaoPresenteNoDB("IV nao existe no DB!\n"); }
+		API_DB_PS API_ps = API_DB_PS.getInstance();
+		if(!API_ps.isInDB(id)) { throw new IVNaoPresenteNoDB("IV nao existe no DB!\n"); }
 		
 		return new NFMutavel(id, quantidade, outros);
 	}

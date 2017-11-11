@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="labs/lab_1/src"/>
+	<classpathentry kind="src" path="labs/lab_1/test"/>
+	<classpathentry kind="src" path="labs/lab_2/CalculadoraString/src"/>
+	<classpathentry kind="src" path="labs/lab_2/CalculadoraString/teste"/>
+	<classpathentry kind="src" path="labs/lab_3/Creational_Patterns/src_Ex1"/>
+	<classpathentry kind="src" path="labs/lab_3/Creational_Patterns/src_Ex2"/>
+	<classpathentry kind="src" path="labs/lab_3/Creational_Patterns/src_Ex3"/>
+	<classpathentry kind="src" path="labs/lab_3/Creational_Patterns/src_Ex4"/>
+	<classpathentry kind="src" path="labs/lab_3/Creational_Patterns/test_Ex1"/>
+	<classpathentry kind="src" path="labs/lab_3/Creational_Patterns/test_Ex2"/>
+	<classpathentry kind="src" path="labs/lab_3/Creational_Patterns/test_Ex3"/>
+	<classpathentry kind="src" path="labs/lab_3/Creational_Patterns/test_Ex4"/>
+	<classpathentry kind="src" path="labs/lab_4/src"/>
+	<classpathentry kind="src" path="labs/lab_4/test"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_10/Padrao_Facade/src"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_12/Q1/src"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_12/Q2/src"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_12/Q3/src"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_12/Q4/src"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_12/Q5/src"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_12/Q7/src"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_2/src"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_3/src"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_5/src"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_5/Test"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_6/src"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_7/SOLID_SRP/src"/>
+	<classpathentry kind="src" path="listas_sala/exercicio_aula_9/aula_9/src"/>
+	<classpathentry kind="src" path="p1/Q3 - Um bar com mau cheiro/src"/>
+	<classpathentry kind="src" path="p1/Q3 - Um bar com mau cheiro/test"/>
+	<classpathentry kind="src" path="p1/Q4 - Controle positivo de trens/src"/>
+	<classpathentry kind="src" path="p1/Q4 - Controle positivo de trens/test"/>
+	<classpathentry kind="src" path="p2/Q3/Q3/src_modificado"/>
+	<classpathentry kind="src" path="p2/Q3/Q3/src_original"/>
+	<classpathentry kind="src" path="p2/Q3/Q3/test"/>
+	<classpathentry kind="src" path="p2/Q4/Q4/src_modificado"/>
+	<classpathentry kind="src" path="p2/Q4/Q4/src_original"/>
+	<classpathentry kind="src" path="p2/Q4/Q4/test"/>
+	<classpathentry kind="lib" path="listas_sala/exercicio_aula_5/libs/byte-buddy-1.6.14.jar"/>
+	<classpathentry kind="lib" path="listas_sala/exercicio_aula_5/libs/byte-buddy-agent-1.6.14.jar"/>
+	<classpathentry kind="lib" path="listas_sala/exercicio_aula_5/libs/javax.mail-1.6.0.jar"/>
+	<classpathentry kind="lib" path="listas_sala/exercicio_aula_5/libs/mockito-core-2.8.47.jar"/>
+	<classpathentry kind="lib" path="listas_sala/exercicio_aula_5/libs/objenesis-2.5.jar"/>
+	<classpathentry kind="output" path="labs/lab_1/bin"/>
+</classpath>

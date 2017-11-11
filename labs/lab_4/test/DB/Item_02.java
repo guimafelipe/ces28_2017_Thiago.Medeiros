@@ -1,9 +1,16 @@
+package DB;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import DB.API_DB_PS;
+import DB.DB_PS;
 import DB.IV;
+import DB.Produto;
+import Exceptions.DBInvalido;
 import Exceptions.IVNaoPresenteNoDB;
 import Exceptions.QuantidadeInvalida;
 import NotaFiscal.NotaFiscal;
@@ -11,10 +18,20 @@ import NotaFiscal.NotaFiscal;
 // Testes para o requisito 2:
 // -> Todo IV deve pertencer a exatamente uma NF.
 
-public class Item_02 {	
+public class Item_02 {
+	private DB_PS DB_prod_serv;
+	private API_DB_PS API_prod_serv;
+	
 	@Before
 	public void setUp() {
-		// mocks
+		this.DB_prod_serv = mock(DB_PS.class);
+		this.API_prod_serv = API_DB_PS.getInstance();
+		
+		Produto itemExemplo = new Produto("nome",10.00,"outros");
+		when(DB_prod_serv.isInDB(100)).thenReturn(true);
+		when(DB_prod_serv.getItem(100)).thenReturn(itemExemplo);
+		
+		this.API_prod_serv.setDB(DB_prod_serv);
 	}
 
 	@Test (expected = AssertionError.class)

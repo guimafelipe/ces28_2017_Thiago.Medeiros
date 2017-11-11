@@ -1,16 +1,31 @@
+package DB;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import DB.API_DB_PS;
+import DB.DB_PS;
+import DB.Servico;
 import Exceptions.IVNaoPresenteNoDB;
 import Exceptions.QuantidadeInvalida;
 import NotaFiscal.NotaFiscal;
 
 public class Item_20 {
+	private DB_PS DB_prod_serv;
+	private API_DB_PS API_prod_serv;
+	
 	@Before
 	public void setUp() {
-		// mocks
+		this.DB_prod_serv = mock(DB_PS.class);
+		this.API_prod_serv = API_DB_PS.getInstance();
+		Servico itemExemplo1 = new Servico("Serv_1", 1.00, "");
+		when(DB_prod_serv.isInDB(100)).thenReturn(true);
+		when(DB_prod_serv.getItem(100)).thenReturn(itemExemplo1);
+		
+		this.API_prod_serv.setDB(DB_prod_serv);
 	}
 	@Test
 	public void exemplificacao_da_possibilidade_de_extensao_do_campo_outros()

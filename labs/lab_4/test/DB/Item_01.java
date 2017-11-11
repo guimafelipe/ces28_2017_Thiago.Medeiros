@@ -1,10 +1,18 @@
+package DB;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+
 import org.junit.Before;
 import org.junit.Test;
 
+import DB.API_DB_PS;
+import DB.DB_PS;
 import Exceptions.IVNaoPresenteNoDB;
 import Exceptions.QuantidadeInvalida;
 import NotaFiscal.NotaFiscal;
@@ -12,12 +20,20 @@ import NotaFiscal.NotaFiscal;
 // Testes para o requisito 1:
 // -> NF não pode ter zero IV. Deve ter 1 ou mais.
 
-public class Item_01 {	
+public class Item_01 {
+	private DB_PS DB_prod_serv;
+	private API_DB_PS API_prod_serv;
+	
 	@Before
 	public void setUp() {
-		// mocks
+		this.DB_prod_serv = mock(DB_PS.class);
+		this.API_prod_serv = API_DB_PS.getInstance();
+		when(DB_prod_serv.isInDB(-100)).thenReturn(false);
+		when(DB_prod_serv.isInDB(100)).thenReturn(true);
+		when(DB_prod_serv.getItem(100)).thenReturn(new Produto("nome",10.00,"outros"));
+		this.API_prod_serv.setDB(DB_prod_serv);
 	}
-
+		
 	@Test
 	public void Instancia_objeto_NF_corretamente()
 		   throws QuantidadeInvalida, IVNaoPresenteNoDB {
@@ -31,7 +47,6 @@ public class Item_01 {
 		// desejado (bem como um objeto da classe DB_PS, para validação do PS), impedindo
 		// que sejam criadas NFs sem IVs.
 		NotaFiscal NF = NotaFiscal.create(id, qtd, "");		
-
 		assertTrue(NF != null);
 	}
 
@@ -60,7 +75,7 @@ public class Item_01 {
 	@Test
 	public void Falha_ao_instanciar_NF_com_PS_inexistente_no_BD() 
 		   throws QuantidadeInvalida, IVNaoPresenteNoDB {
-
+		
 		int id_exemplo  = -100,   // Tentar instanciar uma NF com uma "id" de PS invalida 
 			qtd_exemplo = 1;      // resulta em uma exceção
 
